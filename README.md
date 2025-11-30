@@ -1,5 +1,5 @@
 # md-houserobberies version 2.9
-FORKED from md-houserobberies version 2.8
+Forked from <a href="https://github.com/Mustachedom/md-houserobberies">md-houserobberies version 2.8 on GitHub</a>
 
 ## What's New in 2.9
 
