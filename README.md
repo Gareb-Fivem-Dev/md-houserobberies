@@ -113,7 +113,6 @@ Server owners can adjust:
 
 ### 📦 What You Can Remove
 - ❌ qb-interior (now built-in)
-- ❌ @qb-core/shared/locale.lua (not needed)
 
 ### 🔧 Technical Improvements
 - Cleaner, more maintainable code structure
