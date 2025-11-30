@@ -3,12 +3,12 @@ Forked from <a href="https://github.com/Mustachedom/md-houserobberies">md-houser
 
 ## What's New in 2.9
 
-# False Alarm System
-
 ## Requires 
 - Qb-Core or Qbox 
 - [ps-ui](https://github.com/Project-Sloth/ps-ui)
 - [k4mb1 free shells](https://forum.cfx.re/t/free-props-starter-shells-for-housing-scripts/4826922)
+
+# False Alarm System
 
 ## Overview
 The false alarm system allows players to trigger fake robbery alerts at houses to divert police attention. This can be used strategically to create diversions while robbing other locations or to simply mess with law enforcement.
