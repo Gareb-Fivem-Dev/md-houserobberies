@@ -6,6 +6,12 @@ RegisterNetEvent('md-houserobbery:server:accessbreak', function(tier, item)
     local info = Player.PlayerData.charinfo
     local luck = math.random(1,100)
     local playerCoords = GetEntityCoords(GetPlayerPed(src))
+    
+    -- Create lock tampering evidence if r14-evidence is enabled
+    if Config.Evidence then
+        TriggerEvent('evidence:server:CreateLockTampering', playerCoords)
+    end
+    
     if luck <= 20 then 
         RemoveItem(src, item, 1)
     end
@@ -53,6 +59,13 @@ RegisterNetEvent('md-houserobbery:server:enterHouse', function(house)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
     local info = Player.PlayerData.charinfo
+    local playerCoords = GetEntityCoords(GetPlayerPed(src))
+    
+    -- Create fingerprint evidence when entering house if r14-evidence is enabled
+    if Config.Evidence then
+        TriggerEvent('evidence:server:CreateFingerprint', playerCoords)
+    end
+    
     TriggerClientEvent('md-houserobbery:client:enterHouse', src, house)
     Config.Houses[house]['spawned'] = true
     TriggerClientEvent('md-houserobbery:client:setHouseState', -1, house, true)
@@ -90,6 +103,45 @@ end)
 RegisterNetEvent('md-houserobberies:server:ptfx', function(loc)
 TriggerClientEvent('md-housrobberies:client:ptfx', -1, loc)
 end)
+
+-- False Alarm System
+RegisterNetEvent('md-houserobberies:server:triggerFalseAlarm', function(house)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    if not Player then return end
+    
+    local info = Player.PlayerData.charinfo
+    local hasItem = Player.Functions.GetItemByName(Config.FalseAlarm.item)
+    
+    if not hasItem then 
+        Notifys("You don't have the required device", "error")
+        return 
+    end
+    
+    if not Config.Houses[house] then return end
+    
+    local houseCoords = Config.Houses[house].coords
+    local chance = math.random(1, 100)
+    
+    -- Trigger police alert for false alarm
+    if Config.FalseAlarm.policeAlert then
+        Dispatch(houseCoords, house)
+    end
+    
+    -- Item consumption chance
+    if chance > Config.FalseAlarm.usageChance then
+        RemoveItem(src, Config.FalseAlarm.item, 1)
+        Notifys("The device burned out after use!", "error")
+    else
+        Notifys("False alarm triggered successfully!", "success")
+    end
+    
+    Log('ID: ' .. src .. ' Name: ' .. info.firstname .. ' ' .. info.lastname .. ' Triggered false alarm at house ' .. house .. '!', 'falsealarm')
+    
+    -- Notify police through client
+    TriggerClientEvent('md-houserobberies:client:policeAlertFalse', -1, houseCoords)
+end)
+
 RegisterNetEvent('md-houserobbery:server:GetLoot', function(tier, rewardtype, objectCoords)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
@@ -99,6 +151,12 @@ RegisterNetEvent('md-houserobbery:server:GetLoot', function(tier, rewardtype, ob
     local cashamount = math.random(Config.CashMin, Config.CashMax)
     local randomItem = math.random(1,#Config.Rewards[tier][rewardtype])
     local data = Config.Rewards[tier][rewardtype][randomItem]
+    
+    -- Create fingerprint evidence when stealing loot if r14-evidence is enabled
+    if Config.Evidence then
+        TriggerEvent('evidence:server:CreateFingerprint', objectCoords)
+    end
+    
     if Config.EmptyChance <= chance then 
         AddItem(src, data.item, data.amount)
         if Config.CashChance <= chance then

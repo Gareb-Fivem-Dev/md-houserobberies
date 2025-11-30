@@ -15,5 +15,6 @@
 ["mdmonitor"] 	   = {["name"] = "mdmonitor",        	["label"] = "Monitor",	 				["weight"] = 2500, 		["type"] = "item", 		["image"] = "mansionlaptop.png", 	["unique"] = false, 		["useable"] = true, 	["shouldClose"] = true,   	["combinable"] = nil,   ["description"] = ""},
 ["mdtablet"] 	   = {["name"] = "mdtablet",        	["label"] = "Tablet",	 				["weight"] = 2500, 		["type"] = "item", 		["image"] = "mdtablet.png", 		["unique"] = false, 		["useable"] = true, 	["shouldClose"] = true,   	["combinable"] = nil,   ["description"] = ""},
 ["mdspeakers"] 	   = {["name"] = "mdspeakers",        	["label"] = "Speakers",	 				["weight"] = 2500, 		["type"] = "item", 		["image"] = "speaker.png", 			["unique"] = false, 		["useable"] = true, 	["shouldClose"] = true,   	["combinable"] = nil,   ["description"] = ""},
+["alarm_trigger"]  = {["name"] = "alarm_trigger",     	["label"] = "False Alarm Device",	 	["weight"] = 500, 		["type"] = "item", 		["image"] = "alarm_trigger.png", 	["unique"] = false, 		["useable"] = true, 	["shouldClose"] = true,   	["combinable"] = nil,   ["description"] = "A device that can trigger false alarms at houses to divert police attention"},
 
 ```

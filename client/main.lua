@@ -27,18 +27,20 @@ local function enterRobberyHouse(house)
     openHouseAnim()
     Wait(250)
     local coords = { x = Config.Houses[house].coords.x, y = Config.Houses[house].coords.y, z = Config.Houses[house].coords.z - 145.0} -- dont change this z value i swear to fucking god
-    if home.tier == 1 then
-        data = exports['qb-interior']:CreateCaravanShell(coords)
-    elseif  home.tier == 2 then
-          data = exports['qb-interior']:CreateLesterShell(coords)
-    elseif  home.tier == 3 then
-        data = exports['qb-interior']:CreateTrevorsShell(coords)
-    elseif  home.tier == 4 then
-        data = exports['qb-interior']:CreateHouseRobbery(coords)
-    elseif   home.tier == 5 then
-        data = exports['qb-interior']:CreateFurniMotelModern(coords)
-    elseif home.tier == 6 then
-        data = exports['qb-interior']:CreateMichael(coords)
+    
+    -- Use built-in interior system
+    if Config.UseQBInterior then
+        local shellFunction = Config.InteriorShells[home.tier]
+        if shellFunction and _G[shellFunction] then
+            data = _G[shellFunction](coords)
+        else
+            print(('ERROR: Invalid shell function for tier %s: %s'):format(home.tier, shellFunction or 'nil'))
+            return
+        end
+    else
+        -- Custom interior system - implement your own logic here
+        print('Custom interior system not implemented. Set Config.UseQBInterior = true or add custom implementation.')
+        return
     end
     for k, v in pairs(home['loot']) do
         lib.requestModel(v.prop, 10000)
@@ -73,11 +75,20 @@ local function enterRobberyHouse(house)
     Wait(500)
     TriggerEvent('qb-weathersync:client:DisableSync')
     Wait(1000 * 60 * Config.HouseTimer)
-    exports['qb-interior']:DespawnInterior(houseObj, function()
+    
+    -- Despawn interior based on system used
+    if Config.UseQBInterior then
+        DespawnInterior(houseObj, function()
+            if #(GetEntityCoords(PlayerPedId()) - vector3(coords.x, coords.y, coords.z)) <= 15.0 then
+                SetEntityCoords(PlayerPedId(),Config.Houses[house]['coords'])
+            end
+        end)
+    else
+        -- Custom interior despawn logic here
         if #(GetEntityCoords(PlayerPedId()) - vector3(coords.x, coords.y, coords.z)) <= 15.0 then
             SetEntityCoords(PlayerPedId(),Config.Houses[house]['coords'])
         end
-    end)
+    end
 end
 
 RegisterNetEvent('md-houserobbery:client:deleteobject', function(k, house)
@@ -245,6 +256,40 @@ RegisterNetEvent("md-houserobberies:client:sellloot", function(data)
         TriggerServerEvent('md-houserobberies:server:sellloot', data.item)
     else
         TriggerServerEvent('md-houserobberies:server:loseloot', data.item)
+    end
+end)
+
+-- False Alarm System
+RegisterNetEvent('md-houserobberies:client:useFalseAlarm', function()
+    if not Config.FalseAlarm.enabled then 
+        Notify("This device is not functional", "error")
+        return 
+    end
+    
+    local playerCoords = GetEntityCoords(PlayerPedId())
+    local closestHouse = nil
+    local closestDistance = Config.FalseAlarm.range
+    
+    -- Find closest house within range
+    for k, v in pairs(Config.Houses) do
+        local distance = #(playerCoords - v.coords)
+        if distance < closestDistance and not v.spawned then
+            closestDistance = distance
+            closestHouse = k
+        end
+    end
+    
+    if closestHouse then
+        if not progressbar("Setting Up False Alarm", 5000, 'uncuff') then return end
+        TriggerServerEvent('md-houserobberies:server:triggerFalseAlarm', closestHouse)
+    else
+        Notify("No houses nearby to trigger alarm", "error")
+    end
+end)
+
+RegisterNetEvent('md-houserobberies:client:policeAlertFalse', function(coords)
+    if QBCore.Functions.GetPlayerData().job.type == 'leo' then
+        PoliceCall(100) -- Always alert police for false alarms
     end
 end)
 

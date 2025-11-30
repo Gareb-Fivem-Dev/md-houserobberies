@@ -3,16 +3,19 @@ author "Mustache Dom"
 description "Steal Things From Houses"
 fx_version 'cerulean'
 game 'gta5'
-version '2.8'
+version '2.9'
+
+provide 'qb-interior' -- Allow other scripts to see this as qb-interior
 
 shared_scripts {
     'config.lua',
-    '@qb-core/shared/locale.lua',
     '@ox_lib/init.lua',
 }
 
-client_script {
-   'client/**.lua',
+client_scripts {
+   'client/interiors.lua',
+   'client/main.lua',
+   'client/Bridge.lua',
 }
 server_script {
 'server/**.lua'

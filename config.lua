@@ -1,27 +1,39 @@
 Config = {}
 
 ---------------------------------- BRIDGE 
-Config.progressbartype = 'qb' -- either 'qb', 'oxcir', 'oxbar'
+Config.progressbartype = 'oxbar' -- either 'qb', 'oxcir', 'oxbar'
 Config.minigametype = 'ox' -- look at Config.Minigames for options
 Config.Notify = 'ox' -- -- either 'qb' or 'ox' or 'okok'
 Config.Dispatch = 'ps' -- either ps/aty/qs/core/cd
+Config.Evidence = true -- Set to true to enable r14-evidence integration (fingerprints, lock tampering)
+Config.UseQBInterior = true -- Interior system is now built-in, no need for separate qb-interior script
+-- Interior shell mapping for each tier (only used if Config.UseQBInterior = true)
+Config.InteriorShells = {
+    [1] = 'CreateCaravanShell',      -- Tier 1: Caravan
+    [2] = 'CreateLesterShell',       -- Tier 2: Lester's Factory  
+    [3] = 'CreateTrevorsShell',      -- Tier 3: Trevor's Trailer
+    [4] = 'CreateHouseRobbery',      -- Tier 4: House Robbery Shell
+    [5] = 'CreateFurniMotelModern',  -- Tier 5: Modern Motel
+    [6] = 'CreateMichael',           -- Tier 6: Michael's Mansion
+}
+
 Config.Minigames = {
-    ps_circle =            {    amount = 2,     speed = 8,},
-    ps_maze =            {    timelimit = 15},
-    ps_scrambler =            {    type = 'numeric', time = 15, mirrored = 0},
-    ps_var =            {    numBlocks = 5, time = 10},
-    ps_thermite =            {  time = 10, gridsize = 5, incorrect = 3},
-    ox =            { 'easy', 'easy'},   --easy medium or hard each one corresponds to how many skillchecks and the difficulty
-    blcirprog =     {    amount = 2,     speed = 50},       -- speed = 1-100
-    blprog =        {    amount = 1,     speed = 50},       -- speed = 1-100
-    blkeyspam =     {    amount = 1,     difficulty = 50}, -- difficulty = 1-100
-    blkeycircle =   {    amount = 1,     difficulty = 50, keynumbers = 3},
-    blnumberslide = {    amount = 1,     difficulty = 50, keynumbers = 3},
-    blrapidlines =  {    amount = 1,     difficulty = 50, numberofline = 3},
-    blcircleshake = {    amount = 1,     difficulty = 50, stages = 3},
-    glpath =        {    gridsize = 10,  lives = 3,     timelimit = 999999},
-    glspot =        {gridSize = 6, timeLimit = 999999, charSet = "alphabet", required = 10},
-    glmath =        {timeLimit = 300000},
+    ps_circle =     { amount = 2,     speed = 8, },
+    ps_maze =       { timelimit = 15},
+    ps_scrambler =  { type = 'numeric', time = 15, mirrored = 0 },
+    ps_var =        { numBlocks = 5, time = 10 },
+    ps_thermite =   { time = 10, gridsize = 5, incorrect = 3 },
+    ox =            { 'easy', 'hard', 'medium'},   --easy medium or hard each one corresponds to how many skillchecks and the difficulty
+    blcirprog =     { amount = 2,     speed = 50 },       -- speed = 1-100
+    blprog =        { amount = 1,     speed = 50 },       -- speed = 1-100
+    blkeyspam =     { amount = 1,     difficulty = 50 }, -- difficulty = 1-100
+    blkeycircle =   { amount = 1,     difficulty = 50, keynumbers = 3 },
+    blnumberslide = { amount = 1,     difficulty = 50, keynumbers = 3 },
+    blrapidlines =  { amount = 1,     difficulty = 50, numberofline = 3 },
+    blcircleshake = { amount = 1,     difficulty = 50, stages = 3 },
+    glpath =        { gridsize = 10,  lives = 3,     timelimit = 999999 },
+    glspot =        { gridSize = 6, timeLimit = 999999, charSet = "alphabet", required = 10 },
+    glmath =        { timeLimit = 300000 },
 
 }
 Config.Tiergames = { -- change games based on tier level for stealing loot || names must match table above
@@ -48,28 +60,38 @@ Config.LockpickItems = {
     {item = 'houselaptop',},
     {item = 'mansionlaptop',},
 }
-Config.Target = 'qb'
+Config.Target = 'ox'
 ------------------------
 
 Config.Ped = "csb_reporter"  -- what ped model
-Config.pedspawnchance = 50 -- how many % ped will spawn
+Config.pedspawnchance = 30 -- how many % ped will spawn
 Config.weapononechance = 80  -- % chance to have weapon one 
-Config.Weaponone = "weapon_pistol" -- ped will have this weapon
-Config.Weapontwo = "weapon_bullpupshotgun" -- ped will have this weapon
+Config.Weaponone = "weapon_bat" -- ped will have this weapon
+Config.Weapontwo = "weapon_pistol" -- ped will have this weapon
 Config.MinCops = 0 -- how many police you want to be clocked in 
 Config.AlertPolice = 100 -- % chance a cop gets an alert
-Config.Oxmenu = false -- false = qb menu, true = ox menu
+Config.Oxmenu = true -- false = qb menu, true = ox menu
 Config.EmptyChance = 5 -- chance you wont get items
-Config.HouseTimer = 15 -- time in minutes for the shell to despawn and objects
-Config.DebugHouseNumber = false -- changes the label when you target to the house number so if someone owns a preset house, you know which one to comment out :)
+Config.HouseTimer = 30 -- time in minutes for the shell to despawn and objects
+Config.DebugHouseNumber = true -- changes the label when you target to the house number so if someone owns a preset house, you know which one to comment out :)
 Config.MinRobTime = 5000 -- minimum time in ms it takes to steal from a house
 Config.MaxRobTime = 15000 -- Maximum time in ms it takes to steal from a house
-Config.CashChance = 20 -- Chance to get cash as well as an item
-Config.CashMin = 40 -- minimum cash you receive if you roll the cash drop
-Config.CashMax = 80 -- Maximum cash you receive if you roll the cash drop
+Config.CashChance = 50 -- Chance to get cash as well as an item
+Config.CashMin = 200 -- minimum cash you receive if you roll the cash drop
+Config.CashMax = 1000 -- Maximum cash you receive if you roll the cash drop
 Config.FenceSpawn = vector4(1552.11, 3603.45, 38.78, 231.85) -- where the fence ped spawns
-Config.FenceWeaponone = "weapon_bullpupshotgun" -- what weapon the fence gets when you assault him
-Config.FenceWeapontwo = "weapon_rpg"-- what weapon the fence gets when you assault him
+Config.FenceWeaponone = "weapon_combatpistol" -- what weapon the fence gets when you assault him
+Config.FenceWeapontwo = "weapon_bullpupshotgun"-- what weapon the fence gets when you assault him
+
+-- False Alarm System
+Config.FalseAlarm = {
+    enabled = true, -- Enable/disable false alarm system
+    item = 'alarm_trigger', -- Item name needed to trigger false alarms
+    range = 150.0, -- Distance from player to trigger alarm at a house
+    duration = 120000, -- How long police are diverted (2 minutes in ms)
+    policeAlert = true, -- Should this alert police?
+    usageChance = 85, -- Chance the item doesn't break when used (85% keep item)
+}
 
 Config.OffSet = {
   {x = -1.5, y = -2.0, z = 3.0},     -- tier 1
@@ -162,7 +184,7 @@ Config.Rewards = {
         },
         electronic = { 
             {item = "electronickit", amount = 1}, {item = "boombox", amount = 1}, {item = "mdspeakers", amount = 1}, 
-            {item = "mdtablet", amount = 1}, {item = "mddesktop", amount = 1}, {item = "laptop", amount = 1}, 
+            {item = "tablet_mdt", amount = 1}, {item = "mddesktop", amount = 1}, {item = "laptop", amount = 1}, 
             {item = "tablet", amount = 1}, {item = "checkbook", amount = 1} 
         }
     },
@@ -181,7 +203,7 @@ Config.Rewards = {
         },
         electronic = { 
             {item = "rolex", amount = 1}, {item = "diamond_ring", amount = 1}, {item = "goldchain", amount = 1}, 
-            {item = "mdmonitor", amount = 1}, {item = "mdtablet", amount = 1}, {item = "mdspeakers", amount = 1}, 
+            {item = "mdmonitor", amount = 1}, {item = "tablet_mdt", amount = 1}, {item = "mdspeakers", amount = 1}, 
             {item = "laptop", amount = 1}, {item = "mddesktop", amount = 1} 
         }
     }
@@ -350,28 +372,11 @@ Config.Houses = {
 ---------------------------------------------------------------------------------------
 
 Config.BlackMarket = {
-    [1] = { item = 'diamond_ring',  minvalue = 10, maxvalue = 30, successchance = 90},
-    [2] = { item = 'goldchain',     minvalue = 10, maxvalue = 30, successchance = 90},
-    [3] = { item = 'thermite',      minvalue = 10, maxvalue = 30, successchance = 90},
-    [4] = { item = 'rolex',         minvalue = 10, maxvalue = 30, successchance = 90},
-    [5] = { item = 'tablet',        minvalue = 10, maxvalue = 30, successchance = 90},
-    [6] = { item = 'art1',          minvalue = 10, maxvalue = 30, successchance = 90},
-    [7] = { item = 'art2',          minvalue = 10, maxvalue = 30, successchance = 90},
-    [8] = { item = 'art3',          minvalue = 10, maxvalue = 30, successchance = 90},
-    [9] = { item = 'art4',          minvalue = 10, maxvalue = 30, successchance = 90},
-    [10] = {item = 'art5',          minvalue = 10, maxvalue = 30, successchance = 90},
-    [11] = {item = 'art6',          minvalue = 10, maxvalue = 30, successchance = 90},
-    [12] = {item = 'art7',          minvalue = 10, maxvalue = 30, successchance = 90},
-    [13] = {item = 'radioscanner',  minvalue = 10, maxvalue = 30, successchance = 90},
-    [14] = {item = 'pinger',        minvalue = 10, maxvalue = 30, successchance = 90},
-    [15] = {item = 'gatecrack',     minvalue = 10, maxvalue = 30, successchance = 90},
-    [16] = {item = 'houselaptop',   minvalue = 10, maxvalue = 30, successchance = 90},
-    [17] = {item = 'mansionlaptop', minvalue = 10, maxvalue = 30, successchance = 90},
-    [18] = {item = 'electronickit', minvalue = 10, maxvalue = 30, successchance = 90},
-    [19] = {item = 'boombox',       minvalue = 10, maxvalue = 30, successchance = 90},
-    [20] = {item = 'mdspeakers',    minvalue = 10, maxvalue = 30, successchance = 90},
-    [21] = {item = 'mdtablet',      minvalue = 10, maxvalue = 30, successchance = 90},
-    [22] = {item = 'mddesktop',     minvalue = 10, maxvalue = 30, successchance = 90},
-    [23] = {item = 'mdmonitor',     minvalue = 10, maxvalue = 30, successchance = 90},
-    [24] = {item = 'checkbook',     minvalue = 10, maxvalue = 30, successchance = 90},
+    [1] = { item = 'thermite',      minvalue = 10, maxvalue = 30, successchance = 90},
+    [2] = {item = 'gatecrack',     minvalue = 10, maxvalue = 30, successchance = 90},
+    [3] = {item = 'houselaptop',   minvalue = 10, maxvalue = 30, successchance = 90},
+    [4] = {item = 'mansionlaptop', minvalue = 10, maxvalue = 30, successchance = 90},
+    [5] = {item = 'electronickit', minvalue = 10, maxvalue = 30, successchance = 90},
+    [6] = {item = 'tablet_mdt',      minvalue = 10, maxvalue = 30, successchance = 90},
+    [7] = {item = 'checkbook',     minvalue = 10, maxvalue = 30, successchance = 90},
 }

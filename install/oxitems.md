@@ -159,4 +159,14 @@
             image = "speaker.png",
         }
     },
+	["alarm_trigger"] = {
+        label = "False Alarm Device",
+        weight = 500,
+        stack = true,
+        close = true,
+        description = "A device that can trigger false alarms at houses to divert police attention",
+        client = {
+            image = "alarm_trigger.png",
+        }
+    },
 	```

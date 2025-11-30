@@ -253,8 +253,16 @@ CreateThread(function()
        print('^1 ox_lib Is A Depndancy, Not An Optional ')
     end
 end)
+
+-- False Alarm Device Item Handler
+QBCore.Functions.CreateUseableItem("alarm_trigger", function(source, item)
+    local Player = QBCore.Functions.GetPlayer(source)
+    if Player then
+        TriggerClientEvent('md-houserobberies:client:useFalseAlarm', source)
+    end
+end)
 CreateThread(function()
-    local url = "https://raw.githubusercontent.com/Mustachedom/md-houserobberies/main/version.txt"
+    local url = "https://raw.githubusercontent.com//Gareb-Fivem-Dev/md-houserobberies/main/version.txt"
     local version = GetResourceMetadata('md-houserobberies', "version" )
      PerformHttpRequest(url, function(err, text, headers)
          if (text ~= nil) then
