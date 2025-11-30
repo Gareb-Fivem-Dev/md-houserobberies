@@ -1,6 +1,6 @@
 # md-houserobberies version 2.9
 
-# FORKED FROM md-houserobberies version 2.8
+# FORKED from md-houserobberies version 2.8
 
 ## What's New in 2.9
 
