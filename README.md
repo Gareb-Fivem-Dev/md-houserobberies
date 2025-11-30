@@ -102,6 +102,14 @@ Server owners can adjust:
 - Perfect for creating diversions or general chaos
 - All false alarms are logged for admin tracking
 
+### 💀 Death Exit System
+- **NEW**: Automatic ejection from house if player dies inside
+- If you die inside a robbery, you're automatically teleported outside after 2 seconds
+- Prevents being stuck dead in the interior
+- Works with any death cause (NPCs, other players, suicide, etc.)
+- Notification shown when ejected: "You were found outside the house..."
+- Tracking variables reset automatically
+
 ### 🏠 Built-in Interior System
 - **qb-interior is now merged directly into the script** - no external dependency needed!
 - All 6 robbery shells built-in (Caravan, Lester, Trevor, House Robbery, Modern Motel, Michael)
@@ -119,6 +127,7 @@ Server owners can adjust:
 
 ### 📦 What You Can Remove
 - ❌ qb-interior (now built-in)
+- ❌ @qb-core/shared/locale.lua (not needed)
 
 ### 🔧 Technical Improvements
 - Cleaner, more maintainable code structure

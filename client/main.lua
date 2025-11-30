@@ -1,6 +1,8 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 local houseObj = {}
 local CurrentCops = 0
+local insideHouse = false
+local currentHouse = nil
 
 -- Functions
 local function loadParticle(dict)
@@ -26,6 +28,8 @@ local function enterRobberyHouse(house)
     TriggerServerEvent('InteractSound_SV:PlayOnSource', 'houses_door_open', 0.25)
     openHouseAnim()
     Wait(250)
+    insideHouse = true
+    currentHouse = house
     local coords = { x = Config.Houses[house].coords.x, y = Config.Houses[house].coords.y, z = Config.Houses[house].coords.z - 145.0} -- dont change this z value i swear to fucking god
     
     -- Use built-in interior system
@@ -82,12 +86,16 @@ local function enterRobberyHouse(house)
             if #(GetEntityCoords(PlayerPedId()) - vector3(coords.x, coords.y, coords.z)) <= 15.0 then
                 SetEntityCoords(PlayerPedId(),Config.Houses[house]['coords'])
             end
+            insideHouse = false
+            currentHouse = nil
         end)
     else
         -- Custom interior despawn logic here
         if #(GetEntityCoords(PlayerPedId()) - vector3(coords.x, coords.y, coords.z)) <= 15.0 then
             SetEntityCoords(PlayerPedId(),Config.Houses[house]['coords'])
         end
+        insideHouse = false
+        currentHouse = nil
     end
 end
 
@@ -181,8 +189,33 @@ CreateThread(function()
                 }, })
                 local loc = vector3(Config.Houses[k]['coords'].x  + Config.OffSet[Config.Houses[k]['tier']].x, Config.Houses[k]['coords'].y + Config.OffSet[Config.Houses[k]['tier']].y, Config.Houses[k]['coords'].z + Config.OffSet[Config.Houses[k]['tier']].z - 145 )
                 AddBoxZoneSingle('leavehouse'..k, loc, 
-                {name = 'leaverobbery', icon = "fas fa-sign-in-alt",label = "Leave Robbery House",action = function()   SetEntityCoords(PlayerPedId(), Config.Houses[k].coords)   end,})
+                {name = 'leaverobbery', icon = "fas fa-sign-in-alt",label = "Leave Robbery House",action = function()   
+                    SetEntityCoords(PlayerPedId(), Config.Houses[k].coords)
+                    insideHouse = false
+                    currentHouse = nil
+                end,})
 end
+end)
+
+-- Death Detection Thread
+CreateThread(function()
+    while true do
+        Wait(1000)
+        if insideHouse and currentHouse then
+            local playerPed = PlayerPedId()
+            if IsEntityDead(playerPed) or IsPedDeadOrDying(playerPed, true) then
+                -- Player died inside house, teleport them out
+                Wait(2000) -- Small delay to let death animation start
+                if Config.Houses[currentHouse] then
+                    local coords = Config.Houses[currentHouse].coords
+                    SetEntityCoords(playerPed, coords.x, coords.y, coords.z, false, false, false, false)
+                    insideHouse = false
+                    currentHouse = nil
+                    Notify("You were found outside the house...", "error")
+                end
+            end
+        end
+    end
 end)
 
 CreateThread(function()

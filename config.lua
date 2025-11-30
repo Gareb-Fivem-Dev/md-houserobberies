@@ -115,29 +115,31 @@ Config.PedOff = {
 Config.Rewards = { 
     [1] = {
         cabinet = { 
-            {item = "bandage", amount = 1}, {item = "diamond_ring", amount = 2}, {item = "goldchain", amount = 1}, 
-            {item = "weed_skunk", amount = 1}, {item = "thermite", amount = 1}, {item = "cryptostick", amount = 1} 
+            {item = "bandage", amount = 1}, {item = "diamond_ring", amount = 2}, {item = "leather_jacket", amount = 1}, {item = "goldchain", amount = 2}, 
+            {item = "coke", amount = 2}, {item = "thermite", amount = 1}, {item = "expensive_sneakers", amount = 2}, {item = "needlewithheroin", amount = 1}, {item = "'ap_part_frame", amount = 1}, {item = "cryptostick", amount = 1} 
         },
         kitchen = { 
-            {item = "tosti", amount = 1}, {item = "sandwich", amount = 1}, {item = "twerks_candy", amount = 1}, {item = "kurkakola", amount = 1} 
+            {item = "tosti", amount = 1}, {item = "sandwich", amount = 1}, {item = "ecola", amount = 1}, {item = "ln_peyote_tea", amount = 1} 
         },
         art = { 
-            {item = "bandage", amount = 1}, {item = "rolex", amount = 1}, {item = "diamond_ring", amount = 1}, 
+            {item = "bandage", amount = 2}, {item = "rolex", amount = 2}, {item = "diamond_ring", amount = 1}, 
             {item = "goldchain", amount = 1}, {item = "thermite", amount = 1}, {item = "cryptostick", amount = 1}, 
-            {item = "tablet", amount = 1}, {item = "pistol_ammo", amount = 1} 
+            {item = "tablet", amount = 1},  {item = "WEAPON_PISTOL", amount = 1}, {item = "pistol_ammo", amount = 1} 
         }
     },
     [2] = {
         cabin = { 
-            {item = "advancedlockpick", amount = 1}, {item = "diamond_ring", amount = 1}, {item = "goldchain", amount = 1}, 
-            {item = "thermite", amount = 1}, {item = "cryptostick", amount = 1}, {item = "advancedrepairkit", amount = 1} 
+            {item = "advancedlockpick", amount = 1}, {item = "diamond_ring", amount = 2}, {item = "laundry_card", amount = 1},
+            {item = "rolex", amount = 2}, {item = "goldchain", amount = 2}, 
+            {item = "thermite", amount = 1}, {item = "cryptostick", amount = 1}, {item = "needlewithheroin", amount = 2}, {item = "advancedrepairkit", amount = 1} 
         },
         kitchen = { 
             {item = "tosti", amount = 1}, {item = "sandwich", amount = 1}, {item = "goldchain", amount = 1} 
         },
         chest = { 
             {item = "advancedlockpick", amount = 1}, {item = "advancedrepairkit", amount = 1}, {item = "diamond_ring", amount = 1}, 
-            {item = "goldchain", amount = 1}, {item = "xtcbaggy", amount = 1}, {item = "cryptostick", amount = 1}, {item = "weapon_knife", amount = 1} 
+            {item = "goldchain", amount = 1}, {item = "coke", amount = 3}, {item = "ap_part_trigger", amount = 1}, {item = "cryptostick", amount = 1}, {item = "weapon_knife", amount = 1},
+            {item = "sawnoff_receiver", amount = 1}
         }
     },
     [3] = {
@@ -145,16 +147,18 @@ Config.Rewards = {
             {item = "art1", amount = 1}, {item = "art2", amount = 1}, {item = "goldchain", amount = 1} 
         },
         kitchen = { 
-            {item = "tosti", amount = 1}, {item = "sandwich", amount = 1}, {item = "twerks_candy", amount = 1}, {item = "kurkakola", amount = 1} 
+            {item = "tosti", amount = 1}, {item = "sandwich", amount = 1}, {item = "sandwich", amount = 1}, {item = "ln_peyote_tea", amount = 1} 
         },
         chest = { 
-            {item = "advancedlockpick", amount = 1}, {item = "rolex", amount = 1}, {item = "diamond_ring", amount = 1}, 
-            {item = "goldchain", amount = 1}, {item = "thermite", amount = 1}, {item = "cryptostick", amount = 1}, {item = "weapon_machete", amount = 1} 
+            {item = "advancedlockpick", amount = 1}, {item = "rolex", amount = 2}, {item = "diamond_ring", amount = 2}, {item = "ap_part_grip", amount = 2}, 
+            {item = "goldchain", amount = 1}, {item = "thermite", amount = 1}, {item = "armor", amount = 1},
+            {item = "needlewithheroin", amount = 3}, {item = "coke", amount = 2},  {item = "leather_jacket", amount = 2}, {item = "cryptostick", amount = 1}, {item = "weapon_machete", amount = 1},
+            {item = "sawnoff_handle", amount = 1}
         },
         electronic = { 
             {item = "trojan_usb", amount = 1}, {item = "rolex", amount = 1}, {item = "radioscanner", amount = 1}, 
-            {item = "pinger", amount = 1}, {item = "thermite", amount = 1}, {item = "cryptostick", amount = 1}, 
-            {item = "phone", amount = 1}, {item = "pistol_ammo", amount = 1} 
+            {item = "laundry_card", amount = 1}, {item = "thermite", amount = 1}, {item = "cryptostick", amount = 1}, 
+            {item = "xphone", amount = 2}, {item = "ammo-9", amount = 10} 
         }
     },
     [4] = {
@@ -162,49 +166,59 @@ Config.Rewards = {
             {item = "art1", amount = 1}, {item = "art2", amount = 1}, {item = "art3", amount = 1} 
         },
         kitchen = { 
-            {item = "tosti", amount = 1}, {item = "sandwich", amount = 1}, {item = "twerks_candy", amount = 1}, {item = "kurkakola", amount = 1} 
+            {item = "tosti", amount = 1}, {item = "sandwich", amount = 1}, {item = "wildndusty", amount = 1}, {item = "ln_peyote_tea", amount = 1} 
         },
         chest = { 
-            {item = "firework1", amount = 1}, {item = "rolex", amount = 1}, {item = "diamond_ring", amount = 1}, 
-            {item = "goldchain", amount = 1}, {item = "thermite", amount = 1}, {item = "cryptostick", amount = 1}, {item = "weapon_wrench", amount = 1} 
+            {item = "firework1", amount = 1}, {item = "rolex", amount = 2}, {item = "diamond_ring", amount = 4},
+            {item = "firework1", amount = 1}, {item = "rolex", amount = 1}, {item = "diamond_ring", amount = 1}, {item = "ap_part_receiver", amount = 1},
+            {item = "goldchain", amount = 1}, {item = "coke", amount = 5}, {item = "blueprint_pistol50", amount = 1}, {item = "thermite", amount = 1}, {item = "cryptostick", amount = 1}, {item = "weapon_wrench", amount = 1},
+            {item = "sawnoff_slide", amount = 1}
         },
         electronic = { 
-            {item = "gatecrack", amount = 1}, {item = "drill", amount = 1}, {item = "electronickit", amount = 1}, 
+            {item = "gatecrack", amount = 1}, {item = "laundry_card", amount = 2}, {item = "electronickit", amount = 1}, 
             {item = "goldchain", amount = 1}, {item = "thermite", amount = 1}, {item = "cryptostick", amount = 1}, 
-            {item = "tablet", amount = 1}, {item = "pistol_ammo", amount = 1}, {item = "houselaptop", amount = 1}, {item = "mansionlaptop", amount = 1} 
+            {item = "minismg_trigger", amount = 1}, {item = "gg_tracker_scrambler", amount = 1}, 
+            {item = "tablet", amount = 1}, {item = "ammo-9", amount = 10}, {item = "houselaptop", amount = 1}, {item = "mansionlaptop", amount = 1} 
         }
     },
     [5] = {
         kitchen = { 
-            {item = "tosti", amount = 1}, {item = "sandwich", amount = 1}, {item = "twerks_candy", amount = 1}, {item = "kurkakola", amount = 1} 
+            {item = "tosti", amount = 1}, {item = "sandwich", amount = 2}, {item = "ecola", amount = 2}, {item = "ln_peyote_tea", amount = 3} 
         },
         art = { 
             {item = "art1", amount = 1}, {item = "art2", amount = 1}, {item = "art3", amount = 1}, 
             {item = "art4", amount = 1}, {item = "art5", amount = 1} 
         },
         electronic = { 
-            {item = "electronickit", amount = 1}, {item = "boombox", amount = 1}, {item = "mdspeakers", amount = 1}, 
-            {item = "tablet_mdt", amount = 1}, {item = "mddesktop", amount = 1}, {item = "laptop", amount = 1}, 
+            {item = "electronickit", amount = 1}, {item = "boombox", amount = 1}, {item = "mdspeakers", amount = 2}, 
+            {item = "mdtablet", amount = 1}, {item = "mddesktop", amount = 1}, {item = "ammo-9", amount = 10}, {item = "laptop", amount = 1},
+            {item = "minismg_stock", amount = 1},  {item = "gg_signal_jammer", amount = 1},  {item = "ap_part_receiver", amount = 1},
             {item = "tablet", amount = 1}, {item = "checkbook", amount = 1} 
+        },
+        chest = { 
+            {item = "tosti", amount = 1}, {item = "sandwich", amount = 2}, {item = "ecola", amount = 2}, {item = "ln_peyote_tea", amount = 3},
+            {item = "sawnoff_grip", amount = 1}
         }
     },
     [6] = {
         kitchen = { 
-            {item = "tosti", amount = 1}, {item = "sandwich", amount = 1}, {item = "goldchain", amount = 1} 
+            {item = "tosti", amount = 1}, {item = "sandwich", amount = 2}, {item = "laundry_card", amount = 3}, {item = "grandpasflowersbeer", amount = 1}, {item = "goldchain", amount = 3} 
         },
         art = { 
             {item = "art1", amount = 1}, {item = "art2", amount = 1}, {item = "art3", amount = 1}, 
             {item = "art4", amount = 1}, {item = "art5", amount = 1}, {item = "art6", amount = 1}, {item = "art7", amount = 1} 
         }, 
         valuables = { 
-            {item = "rolex", amount = 1}, {item = "diamond_ring", amount = 1}, {item = "goldchain", amount = 1}, 
+            {item = "rolex", amount = 2}, {item = "diamond_ring", amount = 3}, {item = "goldchain", amount = 3}, 
             {item = "art2", amount = 1}, {item = "art3", amount = 1}, {item = "art4", amount = 1}, {item = "art5", amount = 1}, 
-            {item = "art6", amount = 1}, {item = "art7", amount = 1}, {item = "checkbook", amount = 1} 
+            {item = "art6", amount = 1}, {item = "art7", amount = 1}, {item = "coke", amount = 10}, {item = "blueprint_heavyarmor", amount = 1},{item = "repair_kit", amount = 1}, {item = "checkbook", amount = 1},
+            {item = "sawnoff_barrel", amount = 1}
         },
         electronic = { 
-            {item = "rolex", amount = 1}, {item = "diamond_ring", amount = 1}, {item = "goldchain", amount = 1}, 
-            {item = "mdmonitor", amount = 1}, {item = "tablet_mdt", amount = 1}, {item = "mdspeakers", amount = 1}, 
-            {item = "laptop", amount = 1}, {item = "mddesktop", amount = 1} 
+            {item = "rolex", amount = 3}, {item = "diamond_ring", amount = 4}, {item = "goldchain", amount = 5}, 
+            {item = "mdmonitor", amount = 1}, {item = "mdtablet", amount = 1}, {item = "mdspeakers", amount = 2}, 
+            {item = "minismg_receiver", amount = 1}, {item = "gg_wire_cutters", amount = 1},  {item = "ap_part_slider", amount = 1},
+            {item = "laptop", amount = 1}, {item = "ammo-44", amount = 5}, {item = "ammo-shotgun", amount = 10}, {item = "blueprint_sawnoffshotgun", amount = 1}, {item = "alarm_trigger", amount = 1}, {item = "mddesktop", amount = 1} 
         }
     }
 }
